@@ -1,0 +1,69 @@
+====================================
+READ ===============================
+====================================
+try {
+            PreparedStatement psts = conn.prepareStatement("SELECT * from product WHERE id = ?");
+            psts.setInt(1 , id);
+            ResultSet resultSet = psts.executeQuery();
+            if(resultSet.next()){
+                return new Product(
+                        resultSet.getInt("id"),
+                        resultSet.getString("name"),
+                        resultSet.getDouble("price")
+                        );
+            }
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return new Product();
+    }
+
+========================================
+===== READALL ==========================
+========================================
+
+public Product read(int id) {
+        try {
+            PreparedStatement psts = conn.prepareStatement("SELECT * from product WHERE id = ?");
+            psts.setInt(1 , id);
+            ResultSet resultSet = psts.executeQuery();
+            if(resultSet.next()){
+                return new Product(
+                        resultSet.getInt("id"),
+                        resultSet.getString("name"),
+                        resultSet.getDouble("price")
+                        );
+            }
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return new Product();
+    }
+
+=============================================
+===== READ CSV - skal tilrettes!!
+=============================================
+
+List<Movie> movies;
+
+    public MovieRepository() throws FileNotFoundException {
+        this.movies = new ArrayList<>();
+        // read from csv file
+        populateFile();
+    }
+
+    private void populateFile() throws FileNotFoundException {
+        Scanner input = new Scanner(new File("/Users/clbo/Tresors/KEA/programmering/kode_fra_undervisningen/interface_repository/resources/product.csv"));
+        input.useDelimiter(";|\n");
+        while (input.hasNext()){
+            String year = input.next();
+            String length = input.next();
+            String title = input.next();
+            String subject = input.next();
+            String popularity = input.next();
+            String awards = input.next();
+            movies.add(new Movie(year, length, title, subject, popularity, awards));
+        }
+    }
