@@ -1,22 +1,22 @@
 package com.example.interface_repository.repository;
 
-import com.example.interface_repository.model.Product;
+import com.example.interface_repository.model.T;
 
 import java.util.List;
 
-public interface IProductRepository {
+public interface IProductRepository<T> {
   //Create
-  void create(Product p);
+  void create(T p);
 
   //Read
-  List<Product> readAll();
+  List<T> readAll();
 
-  Product read(int id);
+  T read(int id);
 
   //Update
-  void update(Product p);
+  void update();
 
   //Delete
-  void delete(Product p);
+  void delete();
 
 }

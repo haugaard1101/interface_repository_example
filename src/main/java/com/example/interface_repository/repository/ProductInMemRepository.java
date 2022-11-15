@@ -1,11 +1,12 @@
 package com.example.interface_repository.repository;
 
+
 import com.example.interface_repository.model.Product;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class ProductInMemRepository implements IProductRepository {
+public class ProductInMemRepository<T> implements IProductRepository<T> {
 
   private List<Product> products;
 
@@ -17,27 +18,27 @@ public class ProductInMemRepository implements IProductRepository {
   }
 
   @Override
-  public void create(Product p) {
+  public void create(T p) {
 
   }
 
   @Override
-  public List<Product> readAll() {
-    return products;
+  public List<T> readAll() {
+    return (List<T>) products;
   }
 
   @Override
-  public Product read(int id) {
-    return products.get(id - 1);
+  public T read(int id) {
+    return (T) products.get(id - 1);
   }
 
   @Override
-  public void update(Product p) {
+  public void update() {
 
   }
 
   @Override
-  public void delete(Product p) {
+  public void delete() {
 
   }
 
